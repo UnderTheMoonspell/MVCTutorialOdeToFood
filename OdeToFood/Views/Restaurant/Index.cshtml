@@ -1,0 +1,55 @@
+﻿@model IEnumerable<OdeToFood.ViewModel.RestaurantListViewModel>
+
+@{
+    ViewBag.Title = "Restaurantes";
+}
+
+@Scripts.Render("~/Scripts/restaurant.js")
+
+<h2>Index</h2>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        <a href="/Restaurant/Create" id="openCreate">Create</a>
+    }
+</p>
+
+<div id="createForm" class="displayNone">
+    @Html.Partial("_CreateRestaurant", new OdeToFood.ViewModel.RestaurantListViewModel())
+</div>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Country)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Country)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Reviews", "Index", "Reviews" , new { id=item.Id }, null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

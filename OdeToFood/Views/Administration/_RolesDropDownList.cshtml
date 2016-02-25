@@ -1,0 +1,8 @@
+﻿@model IEnumerable<String>
+
+<select id="dropdownrole">
+@foreach (var item in Model) {
+    <option value="@item">@item</option>
+}
+</select>
+    

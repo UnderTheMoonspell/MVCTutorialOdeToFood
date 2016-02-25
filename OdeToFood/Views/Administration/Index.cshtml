@@ -1,0 +1,41 @@
+﻿@model IEnumerable<OdeToFood.ViewModel.EditUserRolesViewModel>
+@{
+    ViewBag.Title = "Administration";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentRoles)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Roles)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.Partial("_RolesDropDownList", item.CurrentRoles)
+        </td>
+        <td>
+            @Html.Partial("_RolesDropDownList", item.Roles)
+        </td>
+        <td>
+@*            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Reviews", "Index", "Reviews" , new { id=item.Id }, null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>
